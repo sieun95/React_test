@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import { useState } from 'react'
 
+// 조건부 랜더링
+// 특정한 값이 true일때는 a 컴포넌트가 나오고, fales일때는 b 컴포넌트
+// 삼항연산자 조건 ? 진실 : 거짓
 function App() {
+  const [isLogin, setIsLogin] = useState(false)
+
+  const clickToggle = () => {
+    setIsLogin(!isLogin) // isLogin true -> false / false -> true
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {
+      isLogin
+      ? <Profile onClick={ clickToggle } />
+      : <Login onClick={ clickToggle } />
+    }
+    </>
   );
 }
 
